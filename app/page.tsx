@@ -5,7 +5,7 @@ import Notespage from './components/notes/Notespage'
 
 const page = () => {
   return (
-    <div className=''>
+    <div className='' id='app'>
       <Notespage />
     </div>
   )

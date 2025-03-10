@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Trash from '../icons/Trash';
-import { autoGrow, setNewOffset } from '../utils/utils';
+import { autoGrow, setNewOffset, setZIndex } from '../utils/utils';
 
 interface Note {
     $id: number;
@@ -37,6 +37,8 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
          
             document.addEventListener("mousemove", mouseMove);
             document.addEventListener("mouseup",mouseUp)
+
+            setZIndex(cardRef.current)
         };
 
         const mouseMove = (e: MouseEvent) => {
@@ -72,6 +74,9 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                     top: `${position.y}px`,
                 }}
                 onMouseDown={mouseDown}
+                onFocus={ () => {
+                    setZIndex(cardRef.current)
+                }}
             >
                 <div
                     className="card-header"

@@ -17,3 +17,5 @@ const Trash = ({ size = "24" }) => {
         </svg>
     );
 };
+
+export default Trash

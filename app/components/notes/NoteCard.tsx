@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import Trash from '../icons/Trash';
 
 interface Note {
     $id: number;
@@ -8,6 +9,22 @@ interface Note {
 }
 
 const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+      if (textAreaRef.current) {
+        autoGrow(textAreaRef);
+      }
+    },);
+  
+    const autoGrow = (textAreaRef: React.RefObject<HTMLTextAreaElement>) => {
+      const { current } = textAreaRef;
+      if (current) {
+        current.style.height = 'auto'; // Reset the height
+        current.style.height = current.scrollHeight + 'px'; // Set the new height
+      }
+    };
+
     try {
 
         let position = JSON.parse(note.position);
@@ -16,19 +33,28 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
 
         return (
             <div
-                className="card"
+                className="card absolute"
                 style={{
                     backgroundColor: colors.colorBody,
+                    left: `${position.x}px`,
+                    top: `${position.y}px`,
                 }}
             >
                 <div
                     className="card-header"
                     style={{ backgroundColor: colors.colorHeader }}
-                ></div>
+                >
+                    <Trash />
+                </div>
+
                 <div className="card-body">
                     <textarea
+                        ref={textAreaRef}
                         style={{ color: colors.colorText }}
                         defaultValue={body}
+                        onInput={() => {
+                            autoGrow(textAreaRef)
+                        }}
                     ></textarea>
                 </div>
 

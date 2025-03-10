@@ -19,10 +19,10 @@ body {
 }
 
 #app {
-  background-color: #212228;
-  background-image: linear-gradient(#292a30 0.1em, transparent 0.1em),
-      linear-gradient(90deg, #292a30 0.1em, transparent 0.1em);
-  background-size: 4em 4em;
+  background-color: #010311;
+  background-image: linear-gradient(#192c39 0.1em, transparent 0.1em),
+      linear-gradient(90deg, #192c39 0.1em, transparent 0.1em);
+  background-size: 2em 2em;
   height: 100vh;
   position: relative;
   overflow: auto;

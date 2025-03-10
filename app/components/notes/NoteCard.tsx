@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Trash from '../icons/Trash';
+import { autoGrow, setNewOffset } from '../utils/utils';
 
 interface Note {
     $id: number;
@@ -21,14 +22,6 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
             autoGrow(textAreaRef);
         }
     },);
-
-    const autoGrow = (textAreaRef: React.RefObject<HTMLTextAreaElement>) => {
-        const { current } = textAreaRef;
-        if (current) {
-            current.style.height = 'auto'; // Reset the height
-            current.style.height = current.scrollHeight + 'px'; // Set the new height
-        }
-    };
 
     try {
         const [position, setPosition] = useState(JSON.parse(note.position))
@@ -57,11 +50,10 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
             mouseStartPos.x = e.clientX;
             mouseStartPos.y = e.clientY;
          
+            const newPosition = setNewOffset(cardRef.current, mouseMoveDir)
+
             //3 - Update card top and left position.
-            setPosition({
-                x: cardRef.current.offsetLeft - mouseMoveDir.x,
-                y: cardRef.current.offsetTop - mouseMoveDir.y,
-            });
+            setPosition(newPosition);
 
         };
 

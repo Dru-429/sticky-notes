@@ -21,10 +21,20 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                     backgroundColor: colors.colorBody,
                 }}
             >
-                {body}
+                <div
+                    className="card-header"
+                    style={{ backgroundColor: colors.colorHeader }}
+                ></div>
+                <div className="card-body">
+                    <textarea
+                        style={{ color: colors.colorText }}
+                        defaultValue={body}
+                    ></textarea>
+                </div>
+
             </div>
         );
-        
+
     }
     catch (error) {
         console.error('Error parsing note body:', error);

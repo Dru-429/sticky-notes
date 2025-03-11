@@ -1,8 +1,10 @@
+"use client"
+
 import React, { useEffect, useRef, useState } from 'react';
-import Trash from '../icons/Trash';
 import { autoGrow, bodyParser, setNewOffset, setZIndex } from '../utils/utils';
 import { db } from '@/appwrite/databases';
 import Spinner from '../icons/Spinner';
+import DeleteButton from './DeleteButton';
 
 interface Note {
     $id: number;
@@ -16,7 +18,7 @@ interface Position {
     y: number;
 }
 
-const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
+const NoteCard: React.FC<{ note: Note }> = ({ note, setNotes }) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
@@ -62,13 +64,17 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
         };
 
         const mouseDown = (e: MouseEvent) => {
-            mouseStartPos.x = e.clientX;
-            mouseStartPos.y = e.clientY;
 
-            document.addEventListener("mousemove", mouseMove);
-            document.addEventListener("mouseup", mouseUp)
+            if (e.target.className === "card-header") { 
+                mouseStartPos.x = e.clientX;
+                mouseStartPos.y = e.clientY;
+    
+                document.addEventListener("mousemove", mouseMove);
+                document.addEventListener("mouseup", mouseUp)
+    
+                setZIndex(cardRef.current)
 
-            setZIndex(cardRef.current)
+            }
         };
 
         const mouseMove = (e: MouseEvent) => {
@@ -114,7 +120,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                     className="card-header"
                     style={{ backgroundColor: colors.colorHeader }}
                 >
-                    <Trash />
+                    <DeleteButton  noteId={note.$id} setNotes={setNotes} />
 
                     {
                         saving && (

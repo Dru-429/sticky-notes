@@ -1,10 +1,11 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { autoGrow, bodyParser, setNewOffset, setZIndex } from '../utils/utils';
 import { db } from '@/appwrite/databases';
 import Spinner from '../icons/Spinner';
 import DeleteButton from './DeleteButton';
+import { NoteContext } from '@/context/NoteContext';
 
 interface Note {
     $id: number;
@@ -21,6 +22,7 @@ interface Position {
 const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const cardRef = useRef(null);
+    const { setSelectedNote } = useContext(NoteContext)
 
     useEffect(() => {
         if (textAreaRef.current) {
@@ -74,7 +76,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                 document.addEventListener("mouseup", mouseUp)
     
                 setZIndex(cardRef.current)
-
+                setSelectedNote(note)
             }
         };
 
@@ -115,6 +117,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                 onMouseDown={mouseDown}
                 onFocus={() => {
                     setZIndex(cardRef.current)
+                    setSelectedNote(note)
                 }}
             >
                 <div

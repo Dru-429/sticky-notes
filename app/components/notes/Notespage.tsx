@@ -11,10 +11,6 @@ const Notespage = () => {
     const [notes, setNotes] = useState([])
 
     const init = async () => {
-        // const response = await databases.listDocuments(
-        //     process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID,
-        //     process.env. NEXT_PUBLIC_APPWRITE_COLLECTION_NOTES_ID   
-        // )
 
         const response = await db.notes.list()
 

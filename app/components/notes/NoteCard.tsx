@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Trash from '../icons/Trash';
 import { autoGrow, bodyParser, setNewOffset, setZIndex } from '../utils/utils';
+import { db } from '@/appwrite/databases';
 
 interface Note {
     $id: number;
@@ -31,6 +32,15 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
         
         let mouseStartPos = { x: 0, y: 0 };
 
+        const saveData = async (key, value) => {
+            const payload = { [key]: JSON.stringify(value) };
+            try {
+                await db.notes.update(note.$id, payload);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
         const mouseDown = (e: MouseEvent) => {
             mouseStartPos.x = e.clientX;
             mouseStartPos.y = e.clientY;
@@ -56,7 +66,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
 
             //3 - Update card top and left position.
             setPosition(newPosition);
-
+            saveData("position", newPosition)
         };
 
         const mouseUp = () => {

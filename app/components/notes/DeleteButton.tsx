@@ -5,7 +5,7 @@ import { NoteContext } from "@/context/NoteContext";
  
 const DeleteButton = ( { noteId } ) => {
  
-    const { SetNotes } = useContext(NoteContext)
+    const { setNotes } = useContext(NoteContext)
 
     const handleDelete = async (e) => {
         setNotes((prevState) =>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Trash from '../icons/Trash';
 import { autoGrow, bodyParser, setNewOffset, setZIndex } from '../utils/utils';
 import { db } from '@/appwrite/databases';
+import Spinner from '../icons/Spinner';
 
 interface Note {
     $id: number;
@@ -13,8 +14,8 @@ interface Note {
 interface Position {
     x: number;
     y: number;
-  }
-  
+}
+
 const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -41,15 +42,31 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
             } catch (error) {
                 console.error(error);
             }
+
+            setSaving(false)
         };
 
+        const handleKeyUp = async () => {
+            //1 - Initiate "saving" state
+            setSaving(true);
+
+            //2 - If we have a timer id, clear it so we can add another two seconds
+            if (keyUpTimer.current) {
+                clearTimeout(keyUpTimer.current);
+            }
+
+            //3 - Set timer to trigger save in 2 seconds
+            keyUpTimer.current = setTimeout(() => {
+                saveData("body", textAreaRef.current.value);
+            }, 2000);
+        };
 
         const mouseDown = (e: MouseEvent) => {
             mouseStartPos.x = e.clientX;
             mouseStartPos.y = e.clientY;
-         
+
             document.addEventListener("mousemove", mouseMove);
-            document.addEventListener("mouseup",mouseUp)
+            document.addEventListener("mouseup", mouseUp)
 
             setZIndex(cardRef.current)
         };
@@ -60,16 +77,16 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                 x: mouseStartPos.x - e.clientX,
                 y: mouseStartPos.y - e.clientY,
             };
-         
+
             //2 - Update start position for next move.
             mouseStartPos.x = e.clientX;
             mouseStartPos.y = e.clientY;
-         
+
             const newPosition = setNewOffset(cardRef.current, mouseMoveDir)
 
             //3 - Update card top and left position.
             setPosition(newPosition);
-            setTimeout( () => {
+            setTimeout(() => {
                 saveData("position", newPosition)
             }, 1000)
         };
@@ -89,7 +106,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                     top: `${position.y}px`,
                 }}
                 onMouseDown={mouseDown}
-                onFocus={ () => {
+                onFocus={() => {
                     setZIndex(cardRef.current)
                 }}
             >
@@ -98,10 +115,20 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                     style={{ backgroundColor: colors.colorHeader }}
                 >
                     <Trash />
+
+                    {
+                        saving && (
+                            <div className="card-saving">
+                                <Spinner color={colors.colorText} /> 
+                                <span style={{ color: colors.colorText }}>Saving...</span>
+                            </div>
+                        )
+                    }
                 </div>
 
                 <div className="card-body">
                     <textarea
+                        onKeyUp={handleKeyUp}
                         ref={textAreaRef}
                         style={{ color: colors.colorText }}
                         defaultValue={body}

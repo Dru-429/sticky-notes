@@ -1,31 +1,18 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import NoteCard from './NoteCard'
-import { databases } from '@/appwrite/config'
-import { db } from '@/appwrite/databases'
-// import { fakeData as notes } from '@/app/assets/fakeData'
+import { NoteContext } from '@/context/NoteContext'
+
 
 const Notespage = () => {
 
-    const [notes, setNotes] = useState([])
-
-    const init = async () => {
-
-        const response = await db.notes.list()
-
-        console.log(response)
-        setNotes(response.documents)
-    }
-
-    useEffect( () => {
-        init()
-    }, [])
-
+    const { notes } = useContext(NoteContext)
+    
     return (
         <div>
             {notes.map((note) => (
-                <NoteCard note={note} key={note.$id} setNotes={setNotes} />
+                <NoteCard note={note} key={note.$id} />
             ))}
         </div>
     )

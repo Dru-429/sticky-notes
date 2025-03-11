@@ -18,7 +18,7 @@ interface Position {
     y: number;
 }
 
-const NoteCard: React.FC<{ note: Note }> = ({ note, setNotes }) => {
+const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
@@ -120,7 +120,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note, setNotes }) => {
                     className="card-header"
                     style={{ backgroundColor: colors.colorHeader }}
                 >
-                    <DeleteButton  noteId={note.$id} setNotes={setNotes} />
+                    <DeleteButton  noteId={note.$id} />
 
                     {
                         saving && (

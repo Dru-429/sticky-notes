@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Trash from '../icons/Trash';
-import { autoGrow, setNewOffset, setZIndex } from '../utils/utils';
+import { autoGrow, bodyParser, setNewOffset, setZIndex } from '../utils/utils';
 
 interface Note {
     $id: number;
@@ -25,8 +25,8 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
 
     try {
         const [position, setPosition] = useState(JSON.parse(note.position))
-        const colors = JSON.parse(note.colors);
-        const body = JSON.parse(note.body);
+        const colors = bodyParser(note.colors);
+        const body = bodyParser(note.body);
         const cardRef = useRef(null);
         
         let mouseStartPos = { x: 0, y: 0 };

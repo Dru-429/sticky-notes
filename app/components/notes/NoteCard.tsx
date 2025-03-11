@@ -29,7 +29,9 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
         const colors = bodyParser(note.colors);
         const body = bodyParser(note.body);
         const cardRef = useRef(null);
-        
+        const [saving, setSaving] = useState(false)
+        const keyUpTimer = useRef(null)
+
         let mouseStartPos = { x: 0, y: 0 };
 
         const saveData = async (key, value) => {
@@ -40,6 +42,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                 console.error(error);
             }
         };
+
 
         const mouseDown = (e: MouseEvent) => {
             mouseStartPos.x = e.clientX;
@@ -66,7 +69,9 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
 
             //3 - Update card top and left position.
             setPosition(newPosition);
-            saveData("position", newPosition)
+            setTimeout( () => {
+                saveData("position", newPosition)
+            }, 1000)
         };
 
         const mouseUp = () => {

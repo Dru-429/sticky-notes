@@ -20,18 +20,19 @@ interface Position {
 
 const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
+    const cardRef = useRef(null);
 
     useEffect(() => {
         if (textAreaRef.current) {
             autoGrow(textAreaRef);
+            setZIndex(cardRef.current)
         }
-    },);
+    }, []);
 
     try {
         const [position, setPosition] = useState(JSON.parse(note.position))
         const colors = bodyParser(note.colors);
         const body = bodyParser(note.body);
-        const cardRef = useRef(null);
         const [saving, setSaving] = useState(false)
         const keyUpTimer = useRef(null)
 

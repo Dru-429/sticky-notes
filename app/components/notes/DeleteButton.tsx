@@ -12,7 +12,7 @@ const DeleteButton = ( { noteId } ) => {
             prevState.filter((note) => note.$id !== noteId)
         );
 
-        // db.notes.delete(noteId)
+        db.notes.delete(noteId)
     };
  
     return (

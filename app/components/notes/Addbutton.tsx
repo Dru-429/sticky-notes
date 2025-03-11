@@ -1,13 +1,15 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import Plus from "../icons/Plus";
 import colors from "../../assets/colors.json"
 import { db } from "@/appwrite/databases";
+import { NoteContext } from '@/context/NoteContext'
 
 const AddButton = () => {
 
-    const addNote = async () => {
+    const startingPos = useRef(10)
+    const { setNotes } = useContext(NoteContext)
 
-        const startingPos = useRef(10)
+    const addNote = async () => {
 
         const payload = {
             position: JSON.stringify({
@@ -20,6 +22,7 @@ const AddButton = () => {
         startingPos.current += 15
 
         const response = await db.notes.create(payload)
+        setNotes( (prev) => [response, ...prev])
     }
 
     return (

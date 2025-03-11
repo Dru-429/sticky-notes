@@ -2,11 +2,14 @@
 
 import React from 'react'
 import Notespage from './components/notes/Notespage'
+import NoteProvider from '@/context/NoteContext'
 
 const page = () => {
   return (
     <div className='' id='app'>
-      <Notespage />
+      <NoteProvider>
+        <Notespage />
+      </NoteProvider>
     </div>
   )
 }

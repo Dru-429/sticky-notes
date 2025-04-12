@@ -8,38 +8,47 @@ const ColorPallet = ({ color }) => {
     const { selectedNote, notes, setNotes } = useContext(NoteContext)
 
     const changeColor = () => {
-        // console.log("Selected color:", selectedNote);
-        console.log("CHange color clicked:", color);
-        // try {
-        //     const currentNoteIndex = notes.findIndex(
-        //         (note) => note.$id === selectedNote.$id
-        //     );
+        console.log("Selected Note:", selectedNote);
+        // console.log("CHange color clicked:", color);
+        try {
+            const currentNoteIndex = notes.findIndex(
+                (note) => note.$id === selectedNote?.$id
+            );
 
-        //     const updatedNote = {
-        //         ...notes[currentNoteIndex],
-        //         colors: JSON.stringify(color),
-        //     };
+            if (currentNoteIndex === -1) {
+                alert("You must select a note before changing colors");
+                return;
+            }
 
-        //     const newNotes = [...notes];
-        //     newNotes[currentNoteIndex] = updatedNote;
-        //     setNotes(newNotes);
+            const updatedNote = {
+                ...notes[currentNoteIndex],
+                colors: JSON.stringify(color),
+            };
 
-        //     db.notes.update(selectedNote.$id, {
-        //         colors: JSON.stringify(color),
-        //     });
-        // } catch (error) {
-        //     alert("You must select a note before changing colors");
-        // }
+            const newNotes = [...notes];
+            newNotes[currentNoteIndex] = updatedNote;
+            setNotes(newNotes);
+
+            console.log("Updated Notes:", newNotes);
+
+            // Optional: update in database if needed
+            // db.notes.update(selectedNote.$id, {
+            //     colors: JSON.stringify(color),
+            // });
+
+        } catch (error) {
+            console.log(error);
+            alert("An error occurred while changing the color.");
+        }
     };
 
     return (
         <div
-            className='color'
-            onChange={changeColor()}
-            style={{ backgroundColor: color.colorHeader }}
-        >
-        </div>
-    )
+            className="color"
+            onClick={changeColor}
+            style={{ backgroundColor: color.colorHeader, cursor: 'pointer' }}
+        ></div>
+    );
 }
 
 export default ColorPallet

@@ -89,7 +89,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
 
             //2 - Update start position for next move.
             mouseStartPos.x = e.clientX;
-            mouseStartPos.y = e.clientY;
+            mouseStartPos.y = e.clientY;        
 
             const newPosition = setNewOffset(cardRef.current, mouseMoveDir)
 
@@ -118,6 +118,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                 onFocus={() => {
                     setZIndex(cardRef.current)
                     setSelectedNote(note)
+                    console.log( "focusing :" , cardRef)
                 }}
             >
                 <div

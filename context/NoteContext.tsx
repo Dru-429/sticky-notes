@@ -8,7 +8,7 @@ export const NoteContext = createContext();
 const NotesProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [notes, setNotes] = useState();
-    const [selectedNote, setSelectedNote] = useState(null);
+    const [selectedNote, setSelectedNote] = useState(0);
  
     useEffect(() => {
         init();

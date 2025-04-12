@@ -32,9 +32,9 @@ const ColorPallet = ({ color }) => {
             console.log("Updated Notes:", newNotes);
 
             // Optional: update in database if needed
-            // db.notes.update(selectedNote.$id, {
-            //     colors: JSON.stringify(color),
-            // });
+            db.notes.update(selectedNote.$id, {
+                colors: JSON.stringify(color),
+            });
 
         } catch (error) {
             console.log(error);

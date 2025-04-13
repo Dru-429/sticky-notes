@@ -8,7 +8,7 @@ const ColorPallet = ({ color }) => {
     const { selectedNote, notes, setNotes } = useContext(NoteContext)
 
     const changeColor = () => {
-        console.log("Selected Note:", selectedNote);
+        // console.log("Selected Note:", selectedNote);
         // console.log("CHange color clicked:", color);
         try {
             const currentNoteIndex = notes.findIndex(
@@ -29,7 +29,7 @@ const ColorPallet = ({ color }) => {
             newNotes[currentNoteIndex] = updatedNote;
             setNotes(newNotes);
 
-            console.log("Updated Notes:", newNotes);
+            // console.log("Updated Notes:", newNotes);
 
             // Optional: update in database if needed
             db.notes.update(selectedNote.$id, {

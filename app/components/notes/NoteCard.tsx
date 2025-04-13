@@ -118,7 +118,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
                 onFocus={() => {
                     setZIndex(cardRef.current)
                     setSelectedNote(note)
-                    console.log( "focusing :" , cardRef)
+                    // console.log( "focusing :" , cardRef)
                 }}
             >
                 <div

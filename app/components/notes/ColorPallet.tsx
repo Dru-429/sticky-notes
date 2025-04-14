@@ -27,8 +27,8 @@ const ColorPallet = ({ color }) => {
                     </AlertDescription>
                 </Alert>
 
-                toast("You must select a note before changing colors", {
-                    description: "Sunday, December 03, 2023 at 9:00 AM"
+                toast(`>_< Uh-oh! `, {
+                    description: "Select a note before changing colors"
                 })
                 return;
             }

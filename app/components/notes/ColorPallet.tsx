@@ -4,6 +4,8 @@ import { db } from '@/appwrite/databases'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { NoteContext } from '@/context/NoteContext'
 import React, { useContext } from 'react'
+import { Terminal } from "lucide-react"
+import { toast } from 'sonner'
 
 const ColorPallet = ({ color }) => {
     const { selectedNote, notes, setNotes } = useContext(NoteContext)
@@ -18,11 +20,16 @@ const ColorPallet = ({ color }) => {
 
             if (currentNoteIndex === -1) {
                 <Alert>
+                    <Terminal className="h-4 w-4" />
                     <AlertTitle>Oh No!</AlertTitle>
                     <AlertDescription>
                         You must select a note before changing colors
                     </AlertDescription>
                 </Alert>
+
+                toast("You must select a note before changing colors", {
+                    description: "Sunday, December 03, 2023 at 9:00 AM"
+                })
                 return;
             }
 
@@ -47,7 +54,7 @@ const ColorPallet = ({ color }) => {
             <Alert>
                 <AlertTitle>Error</AlertTitle>
                 <AlertDescription>
-                An error occurred while changing the color.
+                    An error occurred while changing the color.
                 </AlertDescription>
             </Alert>
 

@@ -1,6 +1,5 @@
 "use client"
-
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import NoteCard from './NoteCard'
 import { NoteContext } from '@/context/NoteContext'
 import Controls from './Controls'

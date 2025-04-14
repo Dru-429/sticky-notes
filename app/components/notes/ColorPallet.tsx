@@ -1,6 +1,7 @@
 "use client"
 
 import { db } from '@/appwrite/databases'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { NoteContext } from '@/context/NoteContext'
 import React, { useContext } from 'react'
 
@@ -16,7 +17,12 @@ const ColorPallet = ({ color }) => {
             );
 
             if (currentNoteIndex === -1) {
-                alert("You must select a note before changing colors");
+                <Alert>
+                    <AlertTitle>Oh No!</AlertTitle>
+                    <AlertDescription>
+                        You must select a note before changing colors
+                    </AlertDescription>
+                </Alert>
                 return;
             }
 
@@ -38,7 +44,13 @@ const ColorPallet = ({ color }) => {
 
         } catch (error) {
             console.log(error);
-            alert("An error occurred while changing the color.");
+            <Alert>
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>
+                An error occurred while changing the color.
+                </AlertDescription>
+            </Alert>
+
         }
     };
 

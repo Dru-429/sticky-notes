@@ -6,7 +6,7 @@ import ColorPallet from "./ColorPallet";
 
 const Controls = () => {    
     return (
-        <div id="controls" className="controls">
+        <div id="controls" className="controls flex flex-col items-center justify-center">
             <AddButton />
 
             {

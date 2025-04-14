@@ -55,10 +55,10 @@ body {
 }
 
 #app {
-  background-color: #010311;
-  background-image: linear-gradient(#192c39 0.1em, transparent 0.1em),
+  background-color: #18181b;
+  /* background-image: linear-gradient(#192c39 0.1em, transparent 0.1em),
       linear-gradient(90deg, #192c39 0.1em, transparent 0.1em);
-  background-size: 3em 3em;
+  background-size: 3em 3em; */
   height: 100vh;
   position: relative;
   overflow: auto;
@@ -124,6 +124,8 @@ textarea:focus {
 
 .controls {
   display: flex;
+  width: 80px ;
+  height: 310px ;
   flex-direction: column;
   gap: 1em;
   align-items: center;
@@ -131,7 +133,7 @@ textarea:focus {
   left: 1em;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #35363e;
+  background-color:  #394556c9;
   padding: 1em 1em;
   border-radius: 40px;
 
@@ -142,7 +144,7 @@ textarea:focus {
 }
 
 #add-btn {
-  background-color: rgba(107, 107, 107, 1);
+  background-color: #5a6f8daa;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,7 +165,6 @@ textarea:focus {
   height: 40px;
   width: 40px;
   border-radius: 50%;
-
   cursor: pointer;
   transition: 0.3s;
 }

@@ -7,8 +7,9 @@ import { Boxes } from '@/components/ui/background-boxes'
 
 const page = () => {
   return (
-    <div className='' id='app'>
+    <div className='w-screen h-screen' id='app'>
       <NoteProvider>
+
         <Boxes />
         <Notespage />
       </NoteProvider>

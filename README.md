@@ -46,9 +46,9 @@ Think of it as a virtual sticky wall – minimal, colorful, and open to all.
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React / Next.js  
-- **Canvas & UI:** HTML5 + CSS3 + Custom grid styling  
-- **Real-Time Collaboration:** (Optional: Firebase, Socket.io, etc.)
+- **Frontend:** Next JS, Type Script
+- **Canvas & UI:** Tailwind CSS, Aceternity UI, ShadCN
+- **Real-Time Collaboration:** Appwrite
 
 ---
 

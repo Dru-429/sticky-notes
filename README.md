@@ -1,4 +1,4 @@
-<img  alt="cover" style="width:100%" src="/public/cover.jpeg"/> 
+<img  alt="cover" style="width:100%" src="/public/cover.jpeg"/>   
 
 # 📝 Sticky Notes – A Collaborative Notes Playground
 

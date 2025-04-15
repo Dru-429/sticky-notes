@@ -51,3 +51,6 @@ Think of it as a virtual sticky wall – minimal, colorful, and open to all.
 
 ---
 
+## 🖼️ UI Sneak Peak 
+
+<img  alt="cover" style="width:100%" src="/public/ui.jpeg"/> 

@@ -1,4 +1,4 @@
-# 📝 CollabCanvas – A Collaborative Notes Playground
+# 📝 Sticky Notes – A Collaborative Notes Playground
 
 Welcome to **Sticky Notes** – a fun and interactive space where anyone can drop sticky notes, jot down quick thoughts, share ideas, or just say hi! 🌟  
 Think of it as a virtual sticky wall – minimal, colorful, and open to all.
@@ -20,6 +20,7 @@ Think of it as a virtual sticky wall – minimal, colorful, and open to all.
 
 - Brainstorming sessions  
 - Event shout-outs  
+- Project shout-outs  
 - Fun team wall  
 - Quick reminders  
 - Just to say “Hey!” 👋

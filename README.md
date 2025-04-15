@@ -1,4 +1,5 @@
-<img  alt="cover" style="width:100%" src="/public/cover.jpeg"/>   
+  
+![image](https://github.com/user-attachments/assets/34617e5b-b4a3-460c-b4ee-8bfc11d59780)
 
 # 📝 Sticky Notes – A Collaborative Notes Playground
 
@@ -53,4 +54,4 @@ Think of it as a virtual sticky wall – minimal, colorful, and open to all.
 
 ## 🖼️ UI Sneak Peak 
 
-<img  alt="cover" style="width:100%" src="/public/ui.jpeg"/> 
+<img  alt="cover" style="width:100%" src="/public/cover.jpeg"/> 

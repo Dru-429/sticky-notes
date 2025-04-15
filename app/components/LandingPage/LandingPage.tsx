@@ -62,7 +62,7 @@ const LandingPage = () => {
             </Link>
           </Button>
         </motion.div>
-
+  
       </div>
       <BackgroundBeams />
     </div>
